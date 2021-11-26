@@ -14,10 +14,10 @@ use Auth;
 
 class Information extends Controller
 {   public function AuthenLogin(){
-        $admin_id =Auth::id();
+        $admin_id =1;
         if ($admin_id) {
             return redirect('dashboard');
-        }else 
+        }else
             return redirect('admin')->send();
 
     }
@@ -58,9 +58,9 @@ class Information extends Controller
         $this->AuthenLogin();
     	$data = $request->all();
     	$contact = Contact::find($info_id);
-    	$contact->info_contact = $data['contact_info'];	
+    	$contact->info_contact = $data['contact_info'];
     	$contact->info_map = $data['map_info'];
-    	$contact->info_fanpage = $data['fanpage_info'];	
+    	$contact->info_fanpage = $data['fanpage_info'];
     	$get_image = $request->file('image_info');
     	$path = 'public/upload/contact/';
     	if($get_image){

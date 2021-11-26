@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
      <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg owl-carousel owl-loaded owl-drag" style="margin-left: 100px;width: 1150px;height: 150px;" data-setbg="{{asset('/frontend/image/breadcrumb.jpg')}}">
+    <section class="breadcrumb-section set-bg owl-carousel owl-loaded owl-drag" style="margin-left: 100px;width: 1150px;height: 150px;" data-setbg="{{asset('/frontend/image/banner-hang-gia-dung-texet.jpg')}}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">

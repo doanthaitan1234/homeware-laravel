@@ -34,7 +34,7 @@ class AuthController extends Controller
             'admin_name' => 'required|max:255',
             'admin_password' => 'required|max:255',]);
         // $data = $request->all();
-        if(Auth::attempt(['admin_name' => $request->admin_name, 'admin_password' => $request->admin_password]))  {
+        if(Auth::attempt(['email' => $request->admin_name, 'password' => $request->admin_password]))  {
             return redirect('/dashboard');
         }else{
             return redirect('/admin')->with('message','User or Password Sai');

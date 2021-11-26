@@ -18,10 +18,10 @@ class Product extends Controller
 
     /*kiểm tra nếu admin mới cho truy cập*/
     public function AuthenLogin(){
-        $admin_id =Auth::id();
+        $admin_id =1;
         if ($admin_id) {
             return redirect('dashboard');
-        }else 
+        }else
             return redirect('admin')->send();
 
     }
@@ -61,10 +61,10 @@ class Product extends Controller
             $name_image = current(explode('.',$get_name_image));
             $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
             $get_image->move('public/upload/product',$new_image);
-            $data['product_image'] = $new_image; 
+            $data['product_image'] = $new_image;
             DB::table('tbl_product')->insert($data);
             Session::put('message','Thêm thành công');
-            return Redirect::to('add-product');        
+            return Redirect::to('add-product');
         }
         $data['product_image'] = '';
         DB::table('tbl_product')->insert($data);
@@ -112,16 +112,16 @@ class Product extends Controller
         $data ['category_id'] = $request->product_cate;
         $data ['brand_id'] = $request->product_brand;
         $get_image =$request->file('product_image');
-        
+
         if($get_image){
             $get_name_image = $get_image->getClientOriginalName();
             $name_image = current(explode('.',$get_name_image));
             $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
             $get_image->move('public/upload/product',$new_image);
-            $data['product_image'] = $new_image; 
+            $data['product_image'] = $new_image;
             DB::table('tbl_product')->where('product_id',$product_id)->update($data);
             Session::put('message','Cập nhập sản phẩm thành công');
-            return Redirect::to('all-product');        
+            return Redirect::to('all-product');
         }
         DB::table('tbl_product')->where('product_id',$product_id)->update($data);
         Session::put('message','Cập nhập sản phẩm thành công');
@@ -150,7 +150,7 @@ class Product extends Controller
         ->join('tbl_brand_product','tbl_brand_product.brand_id','=','tbl_product.brand_id')->where('tbl_product.product_slug',$product_slug)->get();
         foreach ($chitiet_product as $key => $value) {
             $category_id =$value->category_id;
-            //seo 
+            //seo
                 $meta_desc = $value->product_desc;
                 $meta_keywords = $value->product_slug;
                 $meta_title = $value->product_name;

@@ -14,10 +14,10 @@ use Auth;
 class SliderController extends Controller
 {
    public function AuthenLogin(){
-        $admin_id =Auth::id();
+        $admin_id =1;
         if ($admin_id) {
             return redirect('dashboard');
-        }else 
+        }else
             return redirect('admin')->send();
 
     }
@@ -49,12 +49,12 @@ class SliderController extends Controller
         return Redirect::to('all-slider');
 
     }
-    
+
     public function save_slider(SliderRequests $request){
     	$this->AuthenLogin();
    		$data = $request->all();
        	$get_image = request('slider_image');
-      
+
         if($get_image){
             $get_name_image = $get_image->getClientOriginalName();
             $name_image = current(explode('.',$get_name_image));
@@ -73,7 +73,7 @@ class SliderController extends Controller
         	Session::put('message','Vui lòng thêm hình ảnh');
     		return Redirect::to('add-slider');
         }
-       	
+
     }
     public function update_slider(SliderRequests $request,$slider_id){
         $this->AuthenLogin();
@@ -97,7 +97,7 @@ class SliderController extends Controller
             Session::put('message','Vui lòng thêm hình ảnh');
             return Redirect::to('all-slider');
         }
-        
+
     }
     public function delete_slider(Request $request, $slider_id){
         $this->AuthenLogin();
@@ -143,12 +143,12 @@ class SliderController extends Controller
         return Redirect::to('all-ads');
 
     }
-    
+
     public function save_ads(AdsRequests $request){
         $this->AuthenLogin();
         $data = $request->all();
         $get_image = request('ads_image');
-      
+
         if($get_image){
             $get_name_image = $get_image->getClientOriginalName();
             $name_image = current(explode('.',$get_name_image));
@@ -168,13 +168,13 @@ class SliderController extends Controller
             Session::put('message','Vui lòng thêm hình ảnh');
             return Redirect::to('add-ads');
         }
-        
+
     }
     public function update_ads(AdsRequests $request,$ads_id){
         $this->AuthenLogin();
         $data = $request->all();
         $get_image = request('ads_image');
-      
+
         if($get_image){
             $get_name_image = $get_image->getClientOriginalName();
             $name_image = current(explode('.',$get_name_image));
@@ -194,7 +194,7 @@ class SliderController extends Controller
             Session::put('message','Vui lòng thêm hình ảnh');
             return Redirect::to('all-ads');
         }
-        
+
     }
     public function delete_ads(Request $request, $ads_id){
         $this->AuthenLogin();

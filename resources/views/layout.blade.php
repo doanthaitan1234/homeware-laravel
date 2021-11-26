@@ -105,7 +105,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="{{-- header__logo --}}">
-                       <center> <a href="{{URL::to('/trang-chu')}}"><image style="display: block;max-width:200px;max-height:150px;width: auto;height: auto;" src="{{asset('/frontend/image/logo.png')}}" alt=""></a></center>
+                       <center> <a href="{{URL::to('/trang-chu')}}"><image style="display: block;max-width:200px;max-height:150px;width: auto;height: auto;" src="{{asset('/frontend/image/logo.jpg')}}" alt=""></a></center>
                     </div>
                 </div>
                 <div class="col-lg-6">

@@ -55,7 +55,7 @@
                         </form>
                     </div>
                     <div class="signup-image">
-                        <figure><img src="{{asset('/frontend/login-checkout/images/signup-image.jpg')}}" alt="sing up image"></figure>
+                        <figure><img src="{{asset('/frontend/login-checkout/images/signin-image.jfif')}}" alt="sing up image"></figure>
                         <a href="{{URL::to('/login-checkout')}}" class="signup-image-link">Đã có tài khoản</a>
                     </div>
                 </div>

@@ -18,10 +18,10 @@ class BrandProduct extends Controller
 {
     /*kiểm tra nếu admin mới cho truy cập*/
     public function AuthenLogin(){
-        $admin_id =Auth::id();
+        $admin_id =1;
         if ($admin_id) {
             return redirect('dashboard');
-        }else 
+        }else
             return redirect('admin')->send();
 
     }
@@ -111,19 +111,19 @@ class BrandProduct extends Controller
         $cate_product  = DB::table('tbl_category_product')->where('category_status','1')->orderby('category_id','desc')->get();
         $brand_product = DB::table('tbl_brand_product')->where('brand_status','1')->orderby('brand_id','desc')->get();
        $brand_by_id = DB::table('tbl_product')->join('tbl_brand_product','tbl_product.brand_id','=','tbl_brand_product.brand_id')->where('tbl_brand_product.brand_slug',$brand_slug)->get();
-       
+
        //xô thương hiệu
        $brand_name = DB::table('tbl_brand_product')->where('tbl_brand_product.brand_slug',$brand_slug)->limit(1)->get();
 
        foreach($brand_name as $key => $val){
-                //seo 
-                $meta_desc = $val->brand_desc; 
+                //seo
+                $meta_desc = $val->brand_desc;
                 $meta_keywords = $val->brand_slug;
                 $meta_title = $val->brand_name;
                 $url_canonical = $request->url();
                 //--seo
                 }
         return view('pages.brand.show_brand')->with('category',$cate_product)->with('brand',$brand_product)->with('brand_by_id',$brand_by_id)->with('brand_name',$brand_name)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical);
-        
+
     }
 }

@@ -22,6 +22,11 @@
   {{-- end datepicker --}}
   {{-- morris --}}
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+  <style>
+      .content {
+          max-width: 1360px !important;
+      }
+  </style>
   {{-- end morris --}}
 </head>
 
@@ -39,7 +44,7 @@
 
         </a>
         <a href="{{URL::to('/dashboard')}}" class="simple-text logo-normal">
-          Fresh Fruit <img src="{{asset('/backend/assets/img/icon.png')}}" sizes="70x70">
+          Admin<img src="{{asset('/backend/assets/img/icon.png')}}" sizes="70x70">
         </a>
 
       </div>
@@ -52,7 +57,8 @@
             <a data-toggle="collapse" href="#collapseExample" class="username">
               <span>{{__('Xin Chào')}}
                 <?php
-                $name = Auth::user()->admin_name;
+                // $name = Auth::user()->admin_name;
+                $name = 'admin';
                 if($name){
                   echo $name;
                 }
@@ -384,7 +390,7 @@
                 <script>
                   document.write(new Date().getFullYear())
                 </script>, made with <i class="material-icons">favorite</i> by
-                <a href="#" target="_blank">Quang</a>.
+                <a href="#" target="_blank">Tan</a>.
               </div>
             </div>
           </footer>

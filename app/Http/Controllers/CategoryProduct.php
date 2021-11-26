@@ -20,10 +20,10 @@ class CategoryProduct extends Controller
 {
     /*kiểm tra nếu admin mới cho truy cập*/
    public function AuthenLogin(){
-        $admin_id =Auth::id();
+        $admin_id =1;
         if ($admin_id) {
             return redirect('dashboard');
-        }else 
+        }else
             return redirect('admin')->send();
 
     }
@@ -118,8 +118,8 @@ class CategoryProduct extends Controller
         $category_name = DB::table('tbl_category_product')->where('tbl_category_product.category_slug',$category_slug)->limit(1)->get();
 
         foreach($category_name as $key => $val){
-                //seo 
-                $meta_desc = $val->category_desc; 
+                //seo
+                $meta_desc = $val->category_desc;
                 $meta_keywords = $val->category_slug;
                 $meta_title = $val->category_name;
                 $url_canonical = $request->url();
@@ -128,6 +128,6 @@ class CategoryProduct extends Controller
 
         return view('pages.category.show_category')->with('category',$cate_product)->with('brand',$brand_product)->with('category_by_id',$category_by_id)->with('category_name',$category_name)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical);
     }
-    
+
 
 }

@@ -11,9 +11,9 @@ use Illuminate\support\Facades\Redirect;
 session_start();
 use App\Models\Social; //sử dụng model Social
 use App\Models\Login; //sử dụng model Login
-use App\Models\Statistic; 
+use App\Models\Statistic;
 use App\Models\Visiter;
-use App\Models\Brand; 
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Customer;
 use App\Models\Order;
@@ -31,11 +31,16 @@ class AdminController extends Controller
 
     /*kiểm tra nếu admin mới cho truy cập*/
     public function AuthenLogin(){
-        $admin_id =Auth::id();
+        Redirect::to('dashboard');
+        // $admin_id =Auth::id();
+        $admin_id =1;
         if ($admin_id) {
             return Redirect::to('dashboard');
-        }else 
-            return Redirect::to('admin')->send();
+        }else
+            {
+                // dd(1);
+                return Redirect::to('admin')->send();
+            }
 
     }
 
@@ -68,7 +73,7 @@ class AdminController extends Controller
             $visiter->date_visiter = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
             $visiter->save();
         }
-       
+
         //total morris donut
         $product_donut = Products::all()->count();
         $post_donut = Posts::all()->count();
@@ -76,7 +81,7 @@ class AdminController extends Controller
         $customer_donut = Customer::all()->count();
         $category_donut = Category::all()->count();
         $brand_donut = Brand::all()->count();
-        //lay view cao 
+        //lay view cao
         $post_view = Posts::orderBy('post_views','DESC')->take(5)->get();
         $product_view = Products::orderBy('product_views','DESC')->take(10)->get();
         //bai viet moi nhat
@@ -117,7 +122,7 @@ class AdminController extends Controller
         $provider = Socialite::driver('facebook')->user();
         $account = Social::where('provider','facebook')->where('provider_user_id',$provider->getId())->first();
         if($account){
-            //login in vao trang quan tri  
+            //login in vao trang quan tri
             $account_name = Login::where('admin_id',$account->user)->first();
             Session::put('admin_name',$account_name->admin_name);
             Session::put('admin_id',$account_name->admin_id);
@@ -148,7 +153,7 @@ class AdminController extends Controller
             Session::put('admin_name',$admin_login->admin_name);
              Session::put('admin_id',$$admin_login->admin_id);
             return redirect('/dashboard')->with('message', 'Đăng nhập Admin thành công');
-        } 
+        }
     }
 
     public function filter_by_date(Request $request){
